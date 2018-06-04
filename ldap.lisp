@@ -69,6 +69,9 @@
 (defmethod lichat-serverlib:make-profile ((server server) &key)
   (error "Please create a profile elsewhere."))
 
+(defmethod lichat-serverlib:remove-profile (name (server server))
+  (error "Please remove the profile elsewhere."))
+
 (defmethod lichat-serverlib:list-profiles ((server server))
   (with-ldap (ldap server)
     (when (ldap:search ldap '(= objectClass inetorgperson)
