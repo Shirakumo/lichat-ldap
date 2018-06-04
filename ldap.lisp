@@ -84,7 +84,7 @@
                                             :bind-dn (ldap:dn entry)
                                             :name (first (ldap:attr-value entry (profile-attr server))))))))
 
-(defmethod lichat-serverlib:find-profile (name (server server))
+(defmethod lichat-serverlib:find-profile ((name string) (server server))
   (with-ldap (ldap server)
     (when (ldap:search ldap (replace-username (profile-query server) name)
                        :size-limit 1
