@@ -30,6 +30,9 @@
    (bind-dn :initarg :bind-dn :reader bind-dn))
   (:default-initargs :timeout NIL))
 
+(defmethod (setf lichat-serverlib:password) (value (profile profile))
+  (error "Please change your password elsewhere."))
+
 (define-condition bind-error (error)
   ((error-type :initarg :error-type :reader error-type)
    (error-message :initarg :error-message :reader error-message))
@@ -62,6 +65,9 @@
        (unwind-protect
             (progn ,@body)
          (ldap:unbind ,ldap)))))
+
+(defmethod lichat-serverlib:make-profile ((server server) &key)
+  (error "Please create a profile elsewhere."))
 
 (defmethod lichat-serverlib:list-profiles ((server server))
   (with-ldap (ldap server)
